@@ -2,251 +2,207 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Invoice</title>
+
+    <!-- Invoice styling -->
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f5f7;
-            color: #526484;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header,
-        .invoice-head,
-        .invoice-bills {
-            margin-bottom: 20px;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #2c7be5;
-        }
-
-        .header .date {
-            color: #8094ae;
-            font-size: 0.875rem;
-        }
-
-        .invoice-brand {
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
             text-align: center;
+            color: #777;
+        }
+
+        body h1 {
+            font-weight: 300;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            color: #000;
+        }
+
+        body h3 {
+            font-weight: 300;
+            margin-top: 10px;
             margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
         }
 
-        .invoice-brand img {
-            max-width: 150px;
+        body a {
+            color: #06f;
         }
 
-        .invoice-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
         }
 
-        .invoice-contact,
-        .invoice-desc {
-            width: 48%;
-        }
-
-        .invoice-contact .title {
-            font-size: 1.125rem;
-            margin-bottom: 10px;
-        }
-
-        .invoice-contact ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .invoice-contact ul li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-            font-size: 0.875rem;
-        }
-
-        .invoice-contact ul li em {
-            margin-right: 10px;
-            color: #2c7be5;
-        }
-
-        .invoice-desc {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .invoice-desc .title {
-            font-size: 1.125rem;
-            margin-bottom: 10px;
-        }
-
-        .invoice-desc ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 0.875rem;
-        }
-
-        .invoice-desc ul li {
-            margin-bottom: 5px;
-        }
-
-        .invoice-bills table {
+        .invoice-box table {
             width: 100%;
+            line-height: inherit;
+            text-align: left;
             border-collapse: collapse;
         }
 
-        .invoice-bills th,
-        .invoice-bills td {
-            padding: 10px;
-            border: 1px solid #e0e6ed;
+        .invoice-box table td {
+            padding: 5px;
+            vertical-align: top;
         }
 
-        .invoice-bills th {
-            background-color: #f9fafc;
-            text-align: left;
-            font-size: 0.875rem;
-            color: #526484;
+        .invoice-box table tr td:nth-child(2) {
+            text-align: right;
         }
 
-        .invoice-bills td {
-            font-size: 0.875rem;
+        .invoice-box table tr.top table td {
+            padding-bottom: 20px;
         }
 
-        .invoice-bills tfoot {
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+        }
+
+        .invoice-box table tr.information table td {
+            padding-bottom: 40px;
+        }
+
+        .invoice-box table tr.heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
             font-weight: bold;
         }
 
-        .invoice-bills tfoot tr td {
-            border: none;
+        .invoice-box table tr.details td {
+            padding-bottom: 20px;
         }
 
-        .nk-notes {
-            font-style: italic;
-            font-size: 0.75rem;
-            color: #8094ae;
-            text-align: center;
-            margin-top: 20px;
+        .invoice-box table tr.item td {
+            border-bottom: 1px solid #eee;
+        }
+
+        .invoice-box table tr.item.last td {
+            border-bottom: none;
+        }
+
+        .invoice-box table tr.total td:nth-child(2) {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <div>
-                <h3>Invoice <strong class="text-primary small">#746F5K2</strong></h3>
-                <div class="date">Created At: <span class="text-base">18 Dec, 2019 01:02 PM</span></div>
-            </div>
-        </div>
-        <div class="invoice-head">
-            <div class="invoice-contact">
-                <span class="overline-title">Invoice To</span>
-                <div class="invoice-contact-info">
-                    <h4 class="title">Gregory Ander son</h4>
-                    <ul class="list-plain">
-                        <li><em class="icon ni ni-map-pin-fill"></em><span>House #65, 4328 Marion Street<br>Newbury, VT 05051</span></li>
-                        <li><em class="icon ni ni-call-fill"></em><span>+012 8764 556</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="invoice-desc">
-                <h3 class="title">Invoice</h3>
-                <ul class="list-plain">
-                    <li class="invoice-id"><span>Invoice ID</span>:<span>66K5W3</span></li>
-                    <li class="invoice-date"><span>Date</span>:<span>26 Jan, 2020</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="invoice-bills">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
+    <h1>Invoice</h1>
+    <h3>A simple, clean, and responsive HTML invoice template</h3>
+
+    <div class="invoice-box">
+        <table>
+            <tr class="top">
+                <td colspan="2">
+                    <table>
                         <tr>
-                            <th class="w-150px">Item ID</th>
-                            <th class="w-60">Description</th>
-                            <th>Price</th>
-                            <th>Qty</th>
-                            <th>Amount</th>
+                            <td class="title">
+                                @if ($image)
+                                    <img src="{{ $image }}" alt="Logo">
+                                @else
+                                    <p>Logo not found</p>
+                                @endif
+                            </td>
+
+                            <td>
+                                Invoice #: 123<br />
+                                Created: January 1, 2023<br />
+                                Due: February 1, 2023
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
                         <tr>
-                            <td>24108054</td>
-                            <td>Dashlite - Conceptual App Dashboard - Regular License</td>
-                            <td>$40.00</td>
-                            <td>5</td>
-                            <td>$200.00</td>
+                            <td>
+                                Sparksuite, Inc.<br />
+                                12345 Sunny Road<br />
+                                Sunnyville, TX 12345
+                            </td>
+
+                            <td>
+                                Acme Corp.<br />
+                                John Doe<br />
+                                john@example.com
+                            </td>
                         </tr>
-                        <tr>
-                            <td>24108054</td>
-                            <td>6 months premium support</td>
-                            <td>$25.00</td>
-                            <td>1</td>
-                            <td>$25.00</td>
-                        </tr>
-                        <tr>
-                            <td>23604094</td>
-                            <td>Invest Management Dashboard - Regular License</td>
-                            <td>$131.25</td>
-                            <td>1</td>
-                            <td>$131.25</td>
-                        </tr>
-                        <tr>
-                            <td>23604094</td>
-                            <td>6 months premium support</td>
-                            <td>$78.75</td>
-                            <td>1</td>
-                            <td>$78.75</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3"></td>
-                            <td>Subtotal</td>
-                            <td>$435.00</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"></td>
-                            <td>Processing fee</td>
-                            <td>$10.00</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"></td>
-                            <td>TAX</td>
-                            <td>$43.50</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"></td>
-                            <td>Grand Total</td>
-                            <td>$478.50</td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <div class="nk-notes"> Invoice was created on a computer and is valid without the signature and seal. </div>
-            </div>
-        </div>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>Payment Method</td>
+
+                <td>Check #</td>
+            </tr>
+
+            <tr class="details">
+                <td>Check</td>
+
+                <td>1000</td>
+            </tr>
+
+            <tr class="heading">
+                <td>Item</td>
+
+                <td>Price</td>
+            </tr>
+
+            <tr class="item">
+                <td>Website design</td>
+
+                <td>$300.00</td>
+            </tr>
+
+            <tr class="item">
+                <td>Hosting (3 months)</td>
+
+                <td>$75.00</            </tr>
+
+            <tr class="item last">
+                <td>Domain name (1 year)</td>
+
+                <td>$10.00</td>
+            </tr>
+
+            <tr class="total">
+                <td></td>
+
+                <td>Total: $385.00</td>
+            </tr>
+        </table>
     </div>
 </body>
 

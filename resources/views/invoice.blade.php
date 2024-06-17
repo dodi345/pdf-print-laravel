@@ -1,139 +1,240 @@
 <!DOCTYPE html>
-<html lang="zxx" class="js">
+<html lang="en">
 
 <head>
-    <base href="../">
-    <meta charset="utf-8">
-    <meta name="author" content="Softnio">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
-    <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="{{ asset('dashlite') }}/images/favicon.png">
-    <!-- Page Title  -->
-    <title>{{ $title }}</title>
-    <!-- StyleSheets  -->
-    <link rel="stylesheet" href="{{ asset('dashlite') }}/assets/css/dashlite.css?ver=3.0.3">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('dashlite') }}/assets/css/theme.css?ver=3.0.3">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>A simple, clean, and responsive HTML invoice template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
+
+    <!-- Invoice styling -->
+    <style>
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            text-align: center;
+            color: #777;
+        }
+
+        body h1 {
+            font-weight: 300;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            color: #000;
+        }
+
+        body h3 {
+            font-weight: 300;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
+        }
+
+        body a {
+            color: #06f;
+        }
+
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }
+
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        .invoice-box table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .invoice-box table tr td:nth-child(2) {
+            text-align: right;
+        }
+
+        .invoice-box table tr.top table td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+        }
+
+        .invoice-box table tr.information table td {
+            padding-bottom: 40px;
+        }
+
+        .invoice-box table tr.heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .invoice-box table tr.details td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.item td {
+            border-bottom: 1px solid #eee;
+        }
+
+        .invoice-box table tr.item.last td {
+            border-bottom: none;
+        }
+
+        .invoice-box table tr.total td:nth-child(2) {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+        }
+
+        .btn-print {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .btn-print:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+            text-decoration: none;
+        }
+    </style>
 </head>
-  <body>
-    <div class="nk-content nk-content-fluid">
-        <div class="container-xl wide-lg">
-            <div class="nk-content-body">
-                <div class="nk-block-head">
-                    <div class="nk-block-between g-3">
-                        <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">Invoice <strong class="text-primary small">#746F5K2</strong></h3>
-                            <div class="nk-block-des text-soft">
-                                <ul class="list-inline">
-                                    <li>Created At: <span class="text-base">18 Dec, 2019 01:02 PM</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- .nk-block-head -->
-                <div class="nk-block">
-                    <div class="invoice">
-                        <div class="invoice-action">
-                            <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" href="{{ route('invoice.print') }}" target="_blank"><em class="icon ni ni-printer-fill"></em></a>
-                        </div><!-- .invoice-actions -->
-                        <div class="invoice-wrap">
-                            <div class="invoice-brand text-center">
-                                <img src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="">
-                            </div>
-                            <div class="invoice-head">
-                                <div class="invoice-contact">
-                                    <span class="overline-title">Invoice To</span>
-                                    <div class="invoice-contact-info">
-                                        <h4 class="title">Gregory Ander son</h4>
-                                        <ul class="list-plain">
-                                            <li><em class="icon ni ni-map-pin-fill"></em><span>House #65, 4328 Marion Street<br>Newbury, VT 05051</span></li>
-                                            <li><em class="icon ni ni-call-fill"></em><span>+012 8764 556</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="invoice-desc">
-                                    <h3 class="title">Invoice</h3>
-                                    <ul class="list-plain">
-                                        <li class="invoice-id"><span>Invoice ID</span>:<span>66K5W3</span></li>
-                                        <li class="invoice-date"><span>Date</span>:<span>26 Jan, 2020</span></li>
-                                    </ul>
-                                </div>
-                            </div><!-- .invoice-head -->
-                            <div class="invoice-bills">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th class="w-150px">Item ID</th>
-                                                <th class="w-60">Description</th>
-                                                <th>Price</th>
-                                                <th>Qty</th>
-                                                <th>Amount</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>24108054</td>
-                                                <td>Dashlite - Conceptual App Dashboard - Regular License</td>
-                                                <td>$40.00</td>
-                                                <td>5</td>
-                                                <td>$200.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>24108054</td>
-                                                <td>6 months premium support</td>
-                                                <td>$25.00</td>
-                                                <td>1</td>
-                                                <td>$25.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>23604094</td>
-                                                <td>Invest Management Dashboard - Regular License</td>
-                                                <td>$131.25</td>
-                                                <td>1</td>
-                                                <td>$131.25</td>
-                                            </tr>
-                                            <tr>
-                                                <td>23604094</td>
-                                                <td>6 months premium support</td>
-                                                <td>$78.75</td>
-                                                <td>1</td>
-                                                <td>$78.75</td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="2"></td>
-                                                <td colspan="2">Subtotal</td>
-                                                <td>$435.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2"></td>
-                                                <td colspan="2">Processing fee</td>
-                                                <td>$10.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2"></td>
-                                                <td colspan="2">TAX</td>
-                                                <td>$43.50</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2"></td>
-                                                <td colspan="2">Grand Total</td>
-                                                <td>$478.50</td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                    <div class="nk-notes ff-italic fs-12px text-soft"> Invoice was created on a computer and is valid without the signature and seal. </div>
-                                </div>
-                            </div><!-- .invoice-bills -->
-                        </div><!-- .invoice-wrap -->
-                    </div><!-- .invoice -->
-                </div><!-- .nk-block -->
-            </div>
-        </div>
+
+<body>
+    <h1>Invoice</h1>
+    <h3>A simple, clean, and responsive HTML invoice template</h3>
+
+    <div class="invoice-box">
+        <table>
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="{{ $image }}" alt="Company Logo">
+                            </td>
+
+                            <td>
+                                Invoice #: 123<br />
+                                Created: January 1, 2023<br />
+                                Due: February 1, 2023
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Sparksuite, Inc.<br />
+                                12345 Sunny Road<br />
+                                Sunnyville, TX 12345
+                            </td>
+
+                            <td>
+                                Acme Corp.<br />
+                                John Doe<br />
+                                john@example.com
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>Payment Method</td>
+
+                <td>Check #</td>
+            </tr>
+
+            <tr class="details">
+                <td>Check</td>
+
+                <td>1000</td>
+            </tr>
+
+            <tr class="heading">
+                <td>Item</td>
+
+                <td>Price</td>
+            </tr>
+
+            <tr class="item">
+                <td>Website design</td>
+
+                <td>$300.00</td>
+            </tr>
+
+            <tr class="item">
+                <td>Hosting (3 months)</td>
+
+                <td>$75.00</td>
+            </tr>
+
+            <tr class="item last">
+                <td>Domain name (1 year)</td>
+
+                <td>$10.00</td>
+            </tr>
+
+            <tr class="total">
+                <td></td>
+
+                <td>Total: $385.00</td>
+            </tr>
+        </table>
     </div>
-    <script src="{{ asset('dashlite') }}/assets/js/bundle.js?ver=3.0.3"></script>
-    <script src="{{ asset('dashlite') }}/assets/js/scripts.js?ver=3.0.3"></script>
-  </body>
+
+    <!-- Print Button -->
+    <a href="{{ route('invoice.print') }}">
+        <button class="btn-print" ">Print PDF</button>
+    </a>
+</body>
+
 </html>
